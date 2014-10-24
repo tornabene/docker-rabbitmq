@@ -18,6 +18,10 @@ RUN echo "[{rabbit, [{loopback_users, []}]}]." > /etc/rabbitmq/rabbitmq.config
 #RUN /usr/sbin/rabbitmqctl add_user ntipa ntipa
 #RUN /usr/sbin/rabbitmqctl set_user_tags ntipa administrator
 
-EXPOSE 5672 15672 4369
+ADD run.sh /run.sh
+ADD set_rabbitmq_password.sh /set_rabbitmq_password.sh
+RUN chmod 755 ./*.sh
 
-CMD /usr/sbin/rabbitmq-server
+EXPOSE 5672 15672 4369
+ 
+CMD ["/run.sh","/usr/sbin/rabbitmq-server"]
