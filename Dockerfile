@@ -3,7 +3,7 @@
 # VERSION               0.0.1
 
 FROM      ubuntu:14.04
-MAINTAINER Mikael Gueck "gumi@iki.fi"
+MAINTAINER Tindaro Tornaebne "tindaro.tornabene@gmail.com"
 
 ENV DEBIAN_FRONTEND noninteractive
 
@@ -15,6 +15,8 @@ RUN apt-get -qq update > /dev/null
 RUN apt-get -qq -y install rabbitmq-server > /dev/null
 RUN /usr/sbin/rabbitmq-plugins enable rabbitmq_management
 RUN echo "[{rabbit, [{loopback_users, []}]}]." > /etc/rabbitmq/rabbitmq.config
+RUN rabbitmqctl add_user ntipa ntipa
+RUN rabbitmqctl set_user_tags ntipa administrator
 
 EXPOSE 5672 15672 4369
 
