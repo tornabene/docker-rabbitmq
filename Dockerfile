@@ -37,7 +37,7 @@ RUN echo "[{rabbit, [{loopback_users, []}]}]." > /etc/rabbitmq/rabbitmq.config
 
 ADD run.sh /run.sh
 ADD set_rabbitmq_password.sh /set_rabbitmq_password.sh
-RUN chmod 755 ./*.sh
+RUN chmod 755 /*.sh
 RUN  /run.sh
 EXPOSE 5672 15672 4369 22
 
