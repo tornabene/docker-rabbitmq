@@ -2,8 +2,9 @@
 
 ### To build:
 
-    sudo docker build github.com/tornabene/docker-rabbitmq.git
-
+	Spostarsi nella directory e lanciare il comando
+    sudo docker build tornabene/docker-rabbitmq .
+  
 ### To run:
 
     sudo docker pull tornabene/docker-rabbitmq
