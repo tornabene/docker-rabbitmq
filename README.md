@@ -7,7 +7,7 @@
 ### To run:
 
     sudo docker pull tornabene/docker-rabbitmq
-    sudo docker run -p 5672:5672 -p 15672:15672 tornabene/docker-rabbitmq
+    sudo docker run -d --name test1 -p 5672:5672 -p 15672:15672 -p 9922:15672  tornabene/docker-rabbitmq
     
 ### To persist your data:
 
