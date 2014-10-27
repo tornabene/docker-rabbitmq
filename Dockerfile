@@ -13,15 +13,15 @@ RUN apt-key add /tmp/rabbitmq-signing-key-public.asc
 RUN echo "deb http://www.rabbitmq.com/debian/ testing main" > /etc/apt/sources.list.d/rabbitmq.list
 RUN apt-get -qq update > /dev/null
 RUN apt-get -qq -y install rabbitmq-server > /dev/null
+RUN apt-get -y install openssh-server && mkdir /var/run/sshd
+RUN apt-get install -yqq inetutils-ping net-tools
 RUN /usr/sbin/rabbitmq-plugins enable rabbitmq_management
 RUN echo "[{rabbit, [{loopback_users, []}]}]." > /etc/rabbitmq/rabbitmq.config
-#RUN /usr/sbin/rabbitmqctl add_user ntipa ntipa
-#RUN /usr/sbin/rabbitmqctl set_user_tags ntipa administrator
 
 ADD run.sh /run.sh
 ADD set_rabbitmq_password.sh /set_rabbitmq_password.sh
 RUN chmod 755 ./*.sh
 
-EXPOSE 5672 15672 4369
+EXPOSE 5672 15672 4369 22
  
-CMD ["/run.sh","/usr/sbin/rabbitmq-server"]
+CMD ["/run.sh","/usr/sbin/sshd -D","/usr/sbin/rabbitmq-server"]
